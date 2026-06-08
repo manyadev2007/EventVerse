@@ -6,6 +6,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname));
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -23,7 +24,7 @@ db.connect((err) => {
 });
 
 app.get("/", (req, res) => {
-    res.send("EventVerse Backend Running 🚀");
+    res.sendFile(__dirname + "/home.html");
 });
 
 app.post("/student-register", (req, res) => {
