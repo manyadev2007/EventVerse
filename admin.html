@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | EventVerse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="registration-page">
+
+<header class="ev-navbar">
+    <div class="ev-brand">
+        <img src="images/eventverse-logo.png" alt="EventVerse Logo">
+        <div>
+            <h2>Event<span>Verse</span></h2>
+            <p>Your Campus. Your Events.</p>
+        </div>
+    </div>
+
+    <nav>
+        <a href="home.html" class="active">Home</a>
+        <a href="events.html">Events</a>
+       <a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+        <a href="login.html" class="login-btn">Login</a>
+        <a href="registration.html" class="register-btn">Register</a>
+    </nav>
+</header>
+    <section class="registration-section">
+        <div class="registration-box">
+
+           <h1>Admin Login</h1>
+
+<p>
+Manage events and registrations.
+</p>
+
+          <form id="adminLoginForm">
+
+    <input type="text" id="admin_username"
+           placeholder="Admin Username" required>
+
+    <input type="password" id="admin_password"
+           placeholder="Password" required>
+
+    <button type="submit">
+        Login
+    </button>
+
+</form>
+
+<script>
+document.getElementById("adminLoginForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const username = document.getElementById("admin_username").value;
+    const password = document.getElementById("admin_password").value;
+
+    if(username === "admin" && password === "admin123"){
+
+        alert("Admin Login Successful");
+
+        window.location.href = "admin-dashboard.html";
+
+    } else {
+
+        alert("Invalid Admin Credentials");
+
+    }
+
+});
+</script>
+
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="registration-page">
+
+    <section class="registration-section">
+
+        <div class="registration-box" style="width:900px;">
+            <a href="login.html" class="logout-btn">Logout</a>
+
+            <h1>Admin Dashboard</h1>
+            <div class="stats-container">
+
+    <div class="stat-card">
+        <h2>Students</h2>
+        <p id="studentCount">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>Registrations</h2>
+        <p id="registrationCount">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>Events</h2>
+        <p>16</p>
+    </div>
+
+</div>
+
+            <h2>Registered Students</h2>
+
+            <table border="1" width="100%" id="studentsTable">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>USN</th>
+                    <th>Email</th>
+                </tr>
+            </table>
+
+            <br><br>
+
+            <h2>Event Registrations</h2>
+
+            <table border="1" width="100%" id="registrationsTable">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>USN</th>
+                    <th>Event</th>
+                </tr>
+            </table>
+
+        </div>
+
+    </section>
+    <script>
+async function loadStudents(){
+    const response = await fetch("http://localhost:3000/students");
+    const students = await response.json();
+    document.getElementById("studentCount").innerText = students.length;
+
+    const table = document.getElementById("studentsTable");
+
+    students.forEach(student => {
+        table.innerHTML += `
+            <tr>
+                <td>${student.id}</td>
+                <td>${student.full_name}</td>
+                <td>${student.usn}</td>
+                <td>${student.email}</td>
+            </tr>
+        `;
+    });
+}
+
+async function loadRegistrations(){
+    const response = await fetch("http://localhost:3000/registrations");
+    const registrations = await response.json();
+    document.getElementById("registrationCount").innerText = registrations.length;
+
+    const table = document.getElementById("registrationsTable");
+
+    registrations.forEach(reg => {
+        table.innerHTML += `
+            <tr>
+                <td>${reg.id}</td>
+                <td>${reg.full_name}</td>
+                <td>${reg.usn}</td>
+                <td>${reg.event_name}</td>
+            </tr>
+        `;
+    });
+}
+loadStudents();
+loadRegistrations();
+
+</script>
+
+</body>
+</html>

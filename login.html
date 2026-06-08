@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | EventVerse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="registration-page">
+
+<header class="ev-navbar">
+    <div class="ev-brand">
+        <img src="images/eventverse-logo.png" alt="EventVerse Logo">
+        <div>
+            <h2>Event<span>Verse</span></h2>
+            <p>Your Campus. Your Events.</p>
+        </div>
+    </div>
+
+    <nav>
+        <a href="home.html" class="active">Home</a>
+        <a href="events.html">Events</a>
+       <a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+        <a href="login.html" class="login-btn">Login</a>
+        <a href="registration.html" class="register-btn">Register</a>
+    </nav>
+</header>
+    <section class="registration-section">
+        <div class="registration-box">
+
+            <h1>Student Login</h1>
+            <p>Login to explore and register for events.</p>
+
+            <form id="studentLoginForm">
+    <input type="email" id="login_email" placeholder="Email Address" required>
+    <input type="password" id="login_password" placeholder="Password" required>
+
+    <button type="submit">Login</button>
+</form>
+
+<script>
+document.getElementById("studentLoginForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const data = {
+        email: document.getElementById("login_email").value,
+        password: document.getElementById("login_password").value
+    };
+
+    const response = await fetch("http://localhost:3000/student-login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    alert(result.message);
+
+    if(result.success){
+        window.location.href = "home.html";
+    }
+});
+</script>
+
+            <p style="margin-top:18px;">
+                New user?
+                <a href="registration.html" style="color:#60a5fa;">Register here</a>
+            </p>
+
+        </div>
+    </section>
+
+</body>
+</html>
