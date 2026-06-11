@@ -48,8 +48,9 @@ app.post("/event-register", (req, res) => {
 
     db.query(sql, [full_name, usn, email, phone, department, event_name], (err, result) => {
         if (err) {
-            res.json({ success: false, message: "Event registration failed" });
-        } else {
+    console.log("Event registration error:", err);
+    res.json({ success: false, message: "Event registration failed" });
+} else {
             res.json({ success: true, message: "Event registered successfully" });
         }
     });
